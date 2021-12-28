@@ -1,0 +1,23 @@
+{
+  "name": "amazon-e-commerce",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start":"nodemon backend/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KhushiSahoo/Amazon-E-Commerce.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KhushiSahoo/Amazon-E-Commerce/issues"
+  },
+  "homepage": "https://github.com/KhushiSahoo/Amazon-E-Commerce#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
+}
