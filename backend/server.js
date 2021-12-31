@@ -1,7 +1,7 @@
-const express = require('express');
+import express from 'express';
 const app = express();
-const dontenv = require('dotenv');
-const products= require('./data/products')
+import dontenv from 'dotenv';
+import products from './data/products.js'
 dontenv.config();
 app.get('/', (req , res)=>{
     res.send("APi is running...");
