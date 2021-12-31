@@ -2,7 +2,19 @@ import express from 'express';
 const app = express();
 import dontenv from 'dotenv';
 import products from './data/products.js'
+import mongoose from 'mongoose';
+
 dontenv.config();
+
+//connecting with mongo
+const dbUrl = process.env.DB_URL
+//'mongodb://localhost:27017/amazon'
+main().catch(err => console.log(err));
+async function main() {
+    await mongoose.connect(dbUrl);
+    console.log("connection open");
+  }
+
 app.get('/', (req , res)=>{
     res.send("APi is running...");
 })
