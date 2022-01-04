@@ -1,11 +1,13 @@
 import express from 'express';
-const app = express();
-import dontenv from 'dotenv';
+import dotenv from 'dotenv';
 import products from './data/products.js'
 import mongoose from 'mongoose';
-
-dontenv.config();
-
+import colors from 'colors'
+import connectDB from './config/db.js'
+dotenv.config();
+connectDB();
+const app = express();
+/*
 //connecting with mongo
 const dbUrl = process.env.DB_URL
 //'mongodb://localhost:27017/amazon'
@@ -14,7 +16,7 @@ async function main() {
     await mongoose.connect(dbUrl);
     console.log("connection open");
   }
-
+*/
 app.get('/', (req , res)=>{
     res.send("APi is running...");
 })

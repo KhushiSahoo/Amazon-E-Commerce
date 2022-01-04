@@ -25,7 +25,7 @@ const orderSchema = mongoose.Schema({
        country:{type:String , required:true},
     },
     paymentMethod:{
-        type:string,
+        type:String,
         required:true,
     },
     paymentResult:{
