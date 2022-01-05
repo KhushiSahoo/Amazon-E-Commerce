@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Provider} from 'react-redux';
+import store from './store';
 import './index.css';
 import { BrowserRouter, Route, Routes} from 'react-router-dom';
 import Header from "./components/Header";
@@ -9,6 +11,7 @@ import ProductScreen from './screens/ProductScreen';
 import App from './App';
 
 ReactDOM.render(
+  <Provider store={store}>
   <BrowserRouter>
     <Header />
     <Routes>
@@ -16,7 +19,8 @@ ReactDOM.render(
       <Route exact path="/product/:id" element={<ProductScreen/>}/> 
     </Routes>
     <Footer />
-  </BrowserRouter>,
+  </BrowserRouter>
+  </Provider>,
   document.getElementById('root')
 );
 

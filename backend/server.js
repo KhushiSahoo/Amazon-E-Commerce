@@ -10,10 +10,12 @@ app.get('/', (req , res)=>{
     res.send("APi is running...");
 })
 
+app.use('/api/products' , productRoutes);
+
 app.use(notFound)
 
 app.use(errorHandler)
 
-app.use('/api/products' , productRoutes);
+
 const PORT = process.env.PORT || 5000
 app.listen(PORT , console.log(`listening at port ${PORT}`));
