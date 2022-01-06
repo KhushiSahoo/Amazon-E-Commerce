@@ -8,6 +8,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from './screens/ProductScreen';
+import CartScreen from './screens/CartScreen';
 import App from './App';
 
 ReactDOM.render(
@@ -17,6 +18,7 @@ ReactDOM.render(
     <Routes>
       <Route exact path="/" element={<HomeScreen/>}/> 
       <Route exact path="/product/:id" element={<ProductScreen/>}/> 
+      <Route exact path="/cart/:id?" element={<CartScreen/>}/> 
     </Routes>
     <Footer />
   </BrowserRouter>
