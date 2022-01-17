@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import { useDispatch , useSelector } from 'react-redux';
 import Message from '../components/Message';
 import {Row , Col , ListGroup , Image ,  Form , Button , Card} from 'react-bootstrap';
-import { addToCart } from '../actions/cartActions';
+import { addToCart , removeFromCart } from '../actions/cartActions';
 import { useParams , useNavigate , useLocation   } from 'react-router-dom';
 
     
@@ -27,6 +27,7 @@ const CartScreen = () => {
         }
     }, [dispatch , productId , qty]);
     const removeFromCartHandler=(id)=>{
+        dispatch(removeFromCart(id))
         console.log('remove')
     }
      const checkoutHandler=() =>{
