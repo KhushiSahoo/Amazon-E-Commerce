@@ -14,6 +14,8 @@ const CartScreen = () => {
     let search = useLocation().search;
     let qty = Number(new URLSearchParams(search).get('qty'));
     console.log(qty);
+
+    const navigate = useNavigate();
     
     const dispatch = useDispatch();
     const cart = useSelector(state =>state.cart)
@@ -27,12 +29,17 @@ const CartScreen = () => {
     const removeFromCartHandler=(id)=>{
         console.log('remove')
     }
+     const checkoutHandler=() =>{
+         navigate('/login?redirect=shipping')
+         console.log("checkout")
+     }
+
     return (
         <>
 
            <Row>
                <Col md={8}>
-                <h3>Shopping Cart</h3>
+                <h4>Shopping Cart</h4>
                 {cartItems.length===0 ? <Message>Your Cart is Empty :/  <Link to='/'>  Go Back</Link></Message> 
                 :(
                     <ListGroup variant="flush">
@@ -49,7 +56,7 @@ const CartScreen = () => {
                                   Rs.{item.price}
                               </Col>
                               <Col md={2}>
-                              <Form.Control as="select" value={qty} onChange={(e)=> dispatch(addToCart(item.product , Number(e.target.value)))}>
+                              <Form.Control as="select" value={item.qty} onChange={(e)=> dispatch(addToCart(item.product , Number(e.target.value)))}>
                                     {
                                     [...Array(item.countInStock).keys()].map((x)=> (
                                         <option key={x+1} value={x+1}>{x+1}</option>
@@ -69,12 +76,24 @@ const CartScreen = () => {
                     </ListGroup>
                 )}
                </Col>
-               <Col md={2}>
+               <Col md={4}>
+                   <Card>
+                       <ListGroup variant='flush'>
+                           <ListGroup.Item>
+                               <h4>Subtotal ({cartItems.reduce((acc,item)=> acc+ item.qty ,0)}) items</h4>
+                               Rs. {cartItems.reduce((acc, item) => acc + item.qty * item.price , 0).toFixed(2)}
+                           </ListGroup.Item>
+                           <ListGroup.Item>
+                               <Button type="button" className='btn-block' disabled={cartItems.length===0} 
+                               onClick={checkoutHandler}>
+                                   Proceed to Checkout
+                               </Button>
+                           </ListGroup.Item>
+                       </ListGroup>
+                   </Card>
 
                </Col>
-               <Col md={2}>
-
-               </Col>
+        
            </Row>
             
         </>
