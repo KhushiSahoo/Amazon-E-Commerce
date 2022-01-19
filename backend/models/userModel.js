@@ -27,5 +27,13 @@ userSchema.methods.matchPassword = async function (enteredPassord){
     return await bycrpt.compare(enteredPassord , this.password)
 }
 
+userSchema.pre('save' , async function(next){
+    if(!this.Modified('password')){
+        next();
+    }
+    const salt =await bycrypt.genSalt(10);
+    this.password = await bycrpt.hash(this.password , salt)
+})
+
 const User = mongoose.model('User' , userSchema);
 export default User;
