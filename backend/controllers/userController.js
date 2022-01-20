@@ -8,8 +8,9 @@ import generateToken from "../utils/generateToken.js";
 
 const authUser = AsyncHandler(async(req , res) => {
     const {email , password} = req.body;
-    res.send({email , password});
+    //res.send({email , password});
     const user= await User.findOne({email:email});
+    console.log(user);
     if(user && ( await user.matchPassword(password))){
        res.json({
            _id: user._id,
@@ -20,7 +21,7 @@ const authUser = AsyncHandler(async(req , res) => {
        })
     }else{
         res.status(401)
-        throw new Error ('Invalid email or password')
+        throw new Error('Invalid email or password')
     }
 
 })

@@ -18,7 +18,10 @@ const LoginScreen = () => {
   const userLogin = useSelector((state) => state.userLogin)
   const { loading, error, userInfo } = userLogin
   const search = useLocation().search;
-  const redirect = search ? search.split('=')[1] : '/'
+  console.log(search);
+  const redirect = search ? search.split('=')[1] : '/';
+  console.log(redirect);
+  
 
   useEffect(() => {
     if (userInfo) {
@@ -27,7 +30,7 @@ const LoginScreen = () => {
   }, [ navigate , userInfo, redirect])
 
   const submitHandler = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     dispatch(login(email, password))
   }
 
