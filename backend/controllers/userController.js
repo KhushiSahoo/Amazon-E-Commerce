@@ -82,14 +82,21 @@ const getUserProfile = AsyncHandler(async(req , res) => {
 //private route
 
 const updateUserProfile = AsyncHandler(async(req , res) => {
+    console.log("put route for update user");
     const user= await User.findById(req.user._id);
+    console.log('user found put route')
+    console.log(user);
+    console.log(req.body);
     if(user){
       user.name = req.body.name || user.name
       user.email = req.body.email  || user.email
       if(req.body.password){
          user.password = req.body.password
       }
+      console.log("updated user data");
+      console.log(user);
       const updatedUser = await user.save();
+      console.log("user saved...");
       res.json({
         _id: updatedUser._id,
         name:updatedUser.name,

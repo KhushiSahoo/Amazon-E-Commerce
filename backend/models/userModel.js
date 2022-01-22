@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import bycrpt from 'bcryptjs';
+import bcrypt from 'bcryptjs';
 
 const userSchema = mongoose.Schema({
     name:{
@@ -24,15 +24,19 @@ const userSchema = mongoose.Schema({
 })
 
 userSchema.methods.matchPassword = async function (enteredPassord){
-    return await bycrpt.compare(enteredPassord , this.password)
+    return await bcrypt.compare(enteredPassord , this.password)
 }
 
 userSchema.pre('save' , async function(next){
-    if(!this.Modified('password')){
+    console.log("pre save middleware got hit");
+    if(!this.isModified('password')){
+        console.log("no modification in password");
         next();
     }
-    const salt =await bycrypt.genSalt(10);
-    this.password = await bycrpt.hash(this.password , salt)
+    console.log("password modified detected");
+    const salt =await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password , salt);
+    console.log("password encrypted");
 })
 
 const User = mongoose.model('User' , userSchema);
