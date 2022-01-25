@@ -31,7 +31,7 @@ const CartScreen = () => {
         console.log('remove')
     }
      const checkoutHandler=() =>{
-         navigate('/login?redirect=shipping')
+         navigate('/shipping')
          console.log("checkout")
      }
 
