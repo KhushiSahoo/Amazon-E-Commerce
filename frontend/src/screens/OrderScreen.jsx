@@ -17,7 +17,14 @@ const OrderScreen = () => {
     useEffect(()=>{
        dispatch(getOrderDetails(id))
     } , [])
-   
+    if(!loading){
+       //calculate prices
+    const addDecimals = (num) =>{
+        return(Math.round(num*100)/100).toFixed(2);
+    }
+    order.itemsPrice = addDecimals(order.orderItems.reduce((acc , item)=> acc+ item.price * item.qty , 0));
+    }
+    
   return loading ? <Loader/> : error ? <Message variant = 'danger'>{error}</Message>:
   <>
   <h5>Order {order._id}</h5>
@@ -26,6 +33,8 @@ const OrderScreen = () => {
             <ListGroup variant='flush'>
                 <ListGroupItem>
                     <h5>Shipping</h5>
+                    <strong>Name:</strong>{order.user.name}<br/>
+                    <strong>Email:</strong>{order.user.email}<hr/>
                     <p>
                         <strong>
                             Address : 
@@ -35,12 +44,16 @@ const OrderScreen = () => {
                         {order.shippingAddress.country}
                         {order.shippingAddress.address},
                     </p>
+                    {order.isDelivered ? <Message variant='success'> Delivered on {order.deliveredAt}</Message>:<Message variant='danger'>Not Delivered</Message>}
                 </ListGroupItem>
 
                 <ListGroupItem>
                     <h5>Payment Method</h5>
+                    <p>
                     <strong>Method :</strong>
                     {order.paymentMethod}
+                    </p>
+                    {order.isPaid ? <Message variant='success'> Paid on {order.paidAt}</Message>:<Message variant='danger'>Not Paid</Message>}
                 </ListGroupItem>
 
                 <ListGroupItem>
