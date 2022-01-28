@@ -17,7 +17,7 @@ export const createOrder =(order) => async(dispatch , getState) =>{
        }
        console.log("user token recived")
        console.log(userInfo.token)
-       const {data} = await axios.post('/api/users/orders' , order , config);
+       const {data} = await axios.post('/api/orders' , order , config);
        dispatch({
            type: ORDER_CREATE_SUCCESS,
            payload: data
