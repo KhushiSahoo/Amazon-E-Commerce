@@ -16,7 +16,7 @@ const OrderScreen = () => {
     const {order , loading , error} = orderDetails
     useEffect(()=>{
        dispatch(getOrderDetails(id))
-    } , [])
+    } , [id , dispatch])
     if(!loading){
        //calculate prices
     const addDecimals = (num) =>{
