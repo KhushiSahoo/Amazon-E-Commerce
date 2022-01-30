@@ -15,7 +15,7 @@ const OrderScreen = () => {
     const orderDetails = useSelector(state => state.orderDetails)
     const {order , loading , error} = orderDetails
     const orderPay = useSelector((state) => state.orderPay)
-    const { loadingPay: loadingPay, successPay: successPay } = orderPay
+    const { loading: loadingPay, success: successPay } = orderPay
     useEffect(()=>{
        dispatch(getOrderDetails(id))
     } , [id , dispatch])
@@ -40,7 +40,9 @@ const OrderScreen = () => {
             document.body.appendChild(script);
         });
     }
-
+    if(!order || successPay){
+        dispatch(getOrderDetails(id))
+    }
     async function displayRazorpay() {
         const res = await loadScript(
             "https://checkout.razorpay.com/v1/checkout.js"

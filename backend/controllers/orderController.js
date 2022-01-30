@@ -122,6 +122,14 @@ const updateOrdertoPaid = AsyncHandler(async(req , res) => {
      response.send(error);
    }
  };
+ // @desc    Get logged in user orders
+// @route   GET /api/orders/myorders
+// @access  Private
+const getMyOrders = AsyncHandler(async (req, res) => {
+   console.log('in get my order route');
+   const orders = await Order.find({ user: req.user._id })
+   res.json(orders)
+ })
 export {
-    addOrderItems , getOrderById , updateOrdertoPaid , createOrderRazorpay
+    addOrderItems , getOrderById , updateOrdertoPaid , createOrderRazorpay , getMyOrders
 }
