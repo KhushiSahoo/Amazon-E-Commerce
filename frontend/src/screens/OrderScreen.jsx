@@ -1,19 +1,21 @@
-import React, { useEffect} from 'react'
+import React, { useEffect , useState} from 'react'
 import {  Button , Row , Col , ListGroup , Image , Card, ListGroupItem} from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import {Link ,  useNavigate  , useParams} from 'react-router-dom';
 import { getOrderDetails } from '../actions/orderActions';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
-
+import axios from 'axios';
 const OrderScreen = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    
+    const [sdkReady, setSdkReady] = useState(false)
     let { id } = useParams();
     console.log(id)
     const orderDetails = useSelector(state => state.orderDetails)
     const {order , loading , error} = orderDetails
+    const orderPay = useSelector((state) => state.orderPay)
+    const { loadingPay: loadingPay, successPay: successPay } = orderPay
     useEffect(()=>{
        dispatch(getOrderDetails(id))
     } , [id , dispatch])
@@ -24,7 +26,91 @@ const OrderScreen = () => {
     }
     order.itemsPrice = addDecimals(order.orderItems.reduce((acc , item)=> acc+ item.price * item.qty , 0));
     }
+
+    function loadScript(src) {
+        return new Promise((resolve) => {
+            const script = document.createElement("script");
+            script.src = src;
+            script.onload = () => {
+                resolve(true);
+            };
+            script.onerror = () => {
+                resolve(false);
+            };
+            document.body.appendChild(script);
+        });
+    }
+
+    async function displayRazorpay() {
+        const res = await loadScript(
+            "https://checkout.razorpay.com/v1/checkout.js"
+        );
+
+        if (!res) {
+            alert("Razorpay SDK failed to load. Are you online?");
+            setSdkReady(false);
+            return;
+        }
+
+        // creating a new order
+        const result = await axios.post(`http://localhost:5000/api/orders/${id}/create-order`, {
+            amount: order.totalPrice,
+          });
+          
+
+        if (!result) {
+            alert("Server error. Are you online?");
+            return;
+        }
+
+        // Getting the order details back
+        setSdkReady(true);
+        const { amount, id: order_id, currency } = result.data;
+        const {
+            data: { key: razorpayKey },
+          } = await axios.get(`http://localhost:5000/api/orders/get-razorpay-key`);
+
+        const options = {
+            key: razorpayKey, // Enter the Key ID generated from the Dashboard
+            amount: amount.toString(),
+            currency: currency,
+            name: "Shopify Corp",
+            description: "Order Transaction",
+            order_id: order_id,
+            handler: async function (response) {
+                const data = {
+                    orderCreationId: order_id,
+                    razorpayPaymentId: response.razorpay_payment_id,
+                    razorpayOrderId: response.razorpay_order_id,
+                    razorpaySignature: response.razorpay_signature,
+                };
+
+                const result = await axios.put(`/api/orders/${id}/pay`, data);
+
+                alert(result.data.msg);
+            },
+            prefill: {
+                name: order.user.name,
+                email: order.user.email,
+            },
+            theme: {
+                color: "#61dafb",
+            },
+        };
+
+        const paymentObject = new window.Razorpay(options);
+        paymentObject.open();
+}
     
+    
+
+
+
+
+
+
+
+
   return loading ? <Loader/> : error ? <Message variant = 'danger'>{error}</Message>:
   <>
   <h5>Order {order._id}</h5>
@@ -133,6 +219,13 @@ const OrderScreen = () => {
                             </Col>
                         </Row>
                     </ListGroupItem>
+                    {!order.isPaid && (
+                <ListGroup.Item>
+                  <Button onClick={displayRazorpay}>
+                        Pay
+                    </Button>
+                </ListGroup.Item>
+              )}
                 </ListGroup>
             </Card>
         </Col>
