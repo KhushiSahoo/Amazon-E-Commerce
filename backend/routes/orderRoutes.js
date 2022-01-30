@@ -6,7 +6,8 @@ import { protect } from '../middleware/authMiddleware.js';
 const router = express.Router();
 router.post('/', protect  , addOrderItems);
 router.get('/get-razorpay-key', (req, res) => {
-    res.send({ key: process.env.RAZORPAY_KEY_ID });
+    console.log(process.env.RAZORPAY_KEY_ID);
+    res.json({ key: process.env.RAZORPAY_KEY_ID });
   });
 router.get('/:id' , protect , getOrderById);
 

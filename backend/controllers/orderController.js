@@ -57,24 +57,31 @@ const getOrderById = AsyncHandler(async(req , res) => {
 //private route
 
 const updateOrdertoPaid = AsyncHandler(async(req , res) => {
-   const {amount ,razorpayPaymentId, razorpayOrderId, razorpaySignature  }=req.body;
+  console.log('hitting update order route')
    const order = await Order.findById(req.params.id);
+   console.log("update order route");
+   console.log(order);
    if(order){
       order.isPaid = true;
       order.paidAt = Date.now();
-      order.paymentResult={
+     /* order.paymentResult={
          id:req.body.id,
          status : req.body.status,
          update_time: req.body.update_time,
          email_address: req.body.payer.email_address
-      }
-      
+      }*/
+   const {orderCreationId ,razorpayPaymentId, razorpayOrderId, razorpaySignature  }=req.body;   
    if(razorpayOrderId && razorpayPaymentId){
+      console.log("inside if razorpay condition")
       let body = razorpayOrderId + "|" + razorpayPaymentId;
+      console.log(body);
       let expectedSignature = crypto.createHmac('sha256', process.env.RAZORPAY_KEY_SECRET)
 							.update(body.toString())
 							.digest('hex');
+      console.log(expectedSignature) ;              
       if(expectedSignature === razorpaySignature)   {
+         console.log('signature Matched');
+         order.paymentMethod='RazorPay',
         order.razorpay={
         order_id: razorpayOrderId,
         payment_id: razorpayPaymentId,
@@ -83,6 +90,7 @@ const updateOrdertoPaid = AsyncHandler(async(req , res) => {
       }            
    }   
    const updatedOrder = await order.save();
+   console.log(updatedOrder);
    res.json(updatedOrder) ;
    }else{
       res.status(404)
@@ -91,15 +99,18 @@ const updateOrdertoPaid = AsyncHandler(async(req , res) => {
  })
 
  const createOrderRazorpay = async(request, response) => {
+    console.log('create orderroute hit')
    try {
-     const instance = (instance = new Razorpay({
-       key_id: process.env.RAZORPAY_KEY_ID,
-       key_secret: process.env.RAZORPAY_KEY_SECRET,
-     }));
+      console.log('trying')
+      const instance = new Razorpay({
+         key_id: process.env.RAZORPAY_KEY_ID,
+         key_secret: process.env.RAZORPAY_KEY_SECRET,
+     });
      console.log("Razorpay initialized");
     console.log(request.body);
+    console.log(request.body.amount);
      const options = {
-       amount: 50000,
+       amount: request.body.amount*100,
        currency: "INR",
        receipt: uniquId(),
      };

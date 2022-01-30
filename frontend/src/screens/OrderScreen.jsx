@@ -2,7 +2,7 @@ import React, { useEffect , useState} from 'react'
 import {  Button , Row , Col , ListGroup , Image , Card, ListGroupItem} from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import {Link ,  useNavigate  , useParams} from 'react-router-dom';
-import { getOrderDetails } from '../actions/orderActions';
+import { getOrderDetails, payOrder } from '../actions/orderActions';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import axios from 'axios';
@@ -56,7 +56,8 @@ const OrderScreen = () => {
         const result = await axios.post(`http://localhost:5000/api/orders/${id}/create-order`, {
             amount: order.totalPrice,
           });
-          
+          console.log(result);
+
 
         if (!result) {
             alert("Server error. Are you online?");
@@ -69,6 +70,9 @@ const OrderScreen = () => {
         const {
             data: { key: razorpayKey },
           } = await axios.get(`http://localhost:5000/api/orders/get-razorpay-key`);
+          console.log(razorpayKey);
+          console.log(amount);
+          console.log(currency);
 
         const options = {
             key: razorpayKey, // Enter the Key ID generated from the Dashboard
@@ -84,10 +88,10 @@ const OrderScreen = () => {
                     razorpayOrderId: response.razorpay_order_id,
                     razorpaySignature: response.razorpay_signature,
                 };
-
-                const result = await axios.put(`/api/orders/${id}/pay`, data);
-
-                alert(result.data.msg);
+                 console.log("inside handler")
+                 console.log(data);
+                //const result = await axios.put(`http://localhost:5000/api/orders/${id}/pay`, data);
+                const result = dispatch(payOrder(data , id));
             },
             prefill: {
                 name: order.user.name,
