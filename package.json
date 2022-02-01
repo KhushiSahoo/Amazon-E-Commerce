@@ -33,6 +33,7 @@
     "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.4",
+    "morgan": "^1.10.0",
     "razorpay": "^2.8.0",
     "uniqid": "^5.4.0",
     "uniquid": "^1.1.4"

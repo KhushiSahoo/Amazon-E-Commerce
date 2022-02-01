@@ -1,6 +1,6 @@
 import express from 'express';
-import {getProducts , getProductById} from '../controllers/productController.js'
-
+import {getProducts , getProductById , createProductReview} from '../controllers/productController.js'
+import { protect } from '../middleware/authMiddleware.js';
 
 
 const router = express.Router();
@@ -16,6 +16,8 @@ router.get('/', getProducts)
 //fetch single product  
 // GET/api/products/:id
 //public
-router.get('/:id' , getProductById) 
+router.get('/:id' , getProductById) ;
+router.post('/:id/reviews' , protect , createProductReview)
+
 
 export default router;
