@@ -1,14 +1,13 @@
 import React, { useEffect , useState} from 'react'
 import {  Button , Row , Col , ListGroup , Image , Card, ListGroupItem} from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import {Link ,  useNavigate  , useParams} from 'react-router-dom';
+import {Link , useParams} from 'react-router-dom';
 import { getOrderDetails, payOrder } from '../actions/orderActions';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import axios from 'axios';
 const OrderScreen = () => {
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const [sdkReady, setSdkReady] = useState(false)
     let { id } = useParams();
     console.log(id)
@@ -16,9 +15,7 @@ const OrderScreen = () => {
     const {order , loading , error} = orderDetails
     const orderPay = useSelector((state) => state.orderPay)
     const { loading: loadingPay, success: successPay } = orderPay
-    useEffect(()=>{
-       dispatch(getOrderDetails(id))
-    } , [id , dispatch])
+    
     if(!loading){
        //calculate prices
     const addDecimals = (num) =>{
@@ -26,7 +23,9 @@ const OrderScreen = () => {
     }
     order.itemsPrice = addDecimals(order.orderItems.reduce((acc , item)=> acc+ item.price * item.qty , 0));
     }
-
+    useEffect(()=>{
+        dispatch(getOrderDetails(id))
+     } , [id , dispatch]) 
     function loadScript(src) {
         return new Promise((resolve) => {
             const script = document.createElement("script");
@@ -40,10 +39,9 @@ const OrderScreen = () => {
             document.body.appendChild(script);
         });
     }
-    if(!order || successPay){
-        dispatch(getOrderDetails(id))
-    }
+    
     async function displayRazorpay() {
+        
         const res = await loadScript(
             "https://checkout.razorpay.com/v1/checkout.js"
         );
@@ -93,7 +91,7 @@ const OrderScreen = () => {
                  console.log("inside handler")
                  console.log(data);
                 //const result = await axios.put(`http://localhost:5000/api/orders/${id}/pay`, data);
-                const result = dispatch(payOrder(data , id));
+                dispatch(payOrder(data , id));
             },
             prefill: {
                 name: order.user.name,
