@@ -6,12 +6,24 @@ import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { useParams } from 'react-router-dom';
 import { useDispatch , useSelector } from 'react-redux';
-import { listProductDetails } from '../actions/productAction';
+import { listProductDetails , createProductReview } from '../actions/productAction';
+import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants';
+
 const ProductScreen = () => {
     const dispatch = useDispatch();
     const [qty , setQty]= useState(1);
+    const [rating , setRating]= useState(0);
+    const [comment , setComment] = useState('');
+
     const productDetails = useSelector(state=> state.productDetails);
     const {loading , error , product}=productDetails
+
+    const userLogin = useSelector(state=> state.userLogin);
+    const {userInfo}=userLogin;
+
+
+    const productReviewCreate = useSelector(state=> state.productReviewCreate);
+    const {success: successProductReview , error:errorProductReview }=productReviewCreate
     
     let { id } = useParams();
     console.log(id)
@@ -34,6 +46,7 @@ const ProductScreen = () => {
         {loading ? <Loader/>
         : error ? <Message variant="danger">{error}</Message>
         :(
+            <>
             <Row>
             <Col md={6}>
              <Image src={product.image} alt= {product.name} fluid/>
@@ -112,6 +125,13 @@ const ProductScreen = () => {
                 </Card>
             </Col>
         </Row>
+        <Row>
+            <Col md={6}>
+             <h4>Reviews</h4>
+             {product.reviews.length ===0 && <Message>No Reviews</Message>}
+            </Col>
+        </Row>
+        </>
         )}
         
         </Container>
