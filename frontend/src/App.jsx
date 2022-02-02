@@ -31,8 +31,8 @@ function App() {
       <Route path='/payment' element={<PaymentScreen/>}/>
       <Route path='/placeorder' element={<PlaceOrderScreen/>}/>
       <Route path='/order/:id' element={<OrderScreen/>}/>
-      <Route  path="/search/:keyword" element={<HomeScreen/>}/> 
-      <Route exact path="/" element={<HomeScreen/>}/>
+      <Route path="/search/:keyword" element={<HomeScreen/>}/> 
+      <Route path="/" element={<HomeScreen/>}/>
       
       
     </Routes>
