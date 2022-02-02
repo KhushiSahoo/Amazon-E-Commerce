@@ -15,7 +15,7 @@ const SearchBox = () => {
   }
   return (
       <>
-      <Form onSubmit={submitHandler} inline>
+      <Form onSubmit={submitHandler} className="form-inline">
          <Form.Control type="text" 
          name='q' 
          onChange={(e) => setKeyword(e.target.value)} 

@@ -20,7 +20,7 @@ function App() {
     <Header />
     <Container>
     <Routes>
-      <Route exact path="/" element={<HomeScreen/>}/> 
+      
       <Route path="/product/:id" element={<ProductScreen/>}/> 
       <Route exact path="/cart" element={<CartScreen/>}/>
       <Route path="/cart/:id" element={<CartScreen/>}/> 
@@ -31,6 +31,9 @@ function App() {
       <Route path='/payment' element={<PaymentScreen/>}/>
       <Route path='/placeorder' element={<PlaceOrderScreen/>}/>
       <Route path='/order/:id' element={<OrderScreen/>}/>
+      <Route  path="/search/:keyword" element={<HomeScreen/>}/> 
+      <Route exact path="/" element={<HomeScreen/>}/>
+      
       
     </Routes>
     </Container>
