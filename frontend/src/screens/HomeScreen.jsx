@@ -1,4 +1,6 @@
 import React , {useEffect} from 'react';
+import { Link } from 'react-router-dom';
+import ProductCarousel from '../components/ProductCarousel'
 import '../index.css';
 import{Row , Col , Container} from 'react-bootstrap';
 import Product from '../components/Product';
@@ -29,6 +31,13 @@ const HomeScreen = () => {
     }
     return (
         <>  
+        {!keyword ? (
+        <ProductCarousel />
+      ) : (
+        <Link to='/' className='btn btn-light'>
+          Go Back
+        </Link>
+      )}
         <main className="py-3">
         <Container>
         <h4>Latest Product</h4>
