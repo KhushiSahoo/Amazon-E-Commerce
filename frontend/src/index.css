@@ -20,19 +20,19 @@ h3{
   padding: 10px;
   margin: 8px;
   border-radius: 5px;
-  border: 1px solid #2b2eff;
-  color: #2b2eff;
+  border: 1px solid #404049;
+  color: #414149;
   cursor: pointer;
 }
 
 .paginationBttns a:hover {
   color: white;
-  background-color: #2b2eff;
+  background-color: #2f2f38;
 }
 
 .paginationActive a {
   color: white;
-  background-color: #2b2eff;
+  background-color: #33333a;
 }
 
 .paginationDisabled a {

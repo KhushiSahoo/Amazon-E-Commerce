@@ -42,6 +42,8 @@ const HomeScreen = () => {
                     </Col>)
                 })}
             </Row>}
+            <center>
+                <div className='m-4'>
             <ReactPaginate
             previousLabel={'<'}
             nextLabel={'>'}
@@ -54,7 +56,8 @@ const HomeScreen = () => {
             activeClassName={"paginationActive"}
              activeClassName={'activeBttn'}
              />
-           
+             </div>
+           </center>
         </Container>
         </main>
         </>
