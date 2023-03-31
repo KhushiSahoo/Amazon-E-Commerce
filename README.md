@@ -25,52 +25,52 @@ Full-Stack ecommerce site with product classification , Admin Dashboard , Razorp
 ![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/blob/main/frontend/public/images/homeScreen.jpg)
 
 ## Product Screen
-![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/frontend/public/images/productScreen.jpg?raw=true)
+![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/blob/main/frontend/public/images/productScreen.jpg)
 
 ## Upload Page
-![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/tree/main/frontend/public/images/classification.jpg?raw=true)
+![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/blob/main/frontend/public/images/classification.jpg?raw=true)
 
 ## Upload / Search Result
-![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/tree/main/frontend/public/images/classificationResult.jpg?raw=true)
+![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/blob/main/frontend/public/images/classificationResult.jpg?raw=true)
 
 ## Shopping Cart
-![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/tree/main/frontend/public/images/shoppingCart.jpg?raw=true)
+![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/blob/main/frontend/public/images/shoppingCart.jpg?raw=true)
 
 ## Shopping Cart
-![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/tree/main/frontend/public/images/shoppingCart.jpg?raw=true)
+![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/blob/main/frontend/public/images/shoppingCart.jpg?raw=true)
 
 ## Order Detail
-![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/tree/main/frontend/public/images/orderDetail.jpg?raw=true)
+![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/blob/main/frontend/public/images/orderDetail.jpg?raw=true)
 
 ## Order Detail
-![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/tree/main/frontend/public/images/orderDetail.jpg?raw=true)
+![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/blob/main/frontend/public/images/orderDetail.jpg?raw=true)
 
 ## Shippping Details
-![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/tree/main/frontend/public/images/shipping.jpg?raw=true)
+![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/blob/main/frontend/public/images/shipping.jpg?raw=true)
 
 ## Payment
-![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/tree/main/frontend/public/images/payment.jpg?raw=true)
+![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/blob/main/frontend/public/images/payment.jpg?raw=true)
 
 ## OrderSummary
-![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/tree/main/frontend/public/images/orderSummary.jpg?raw=true)
+![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/blob/main/frontend/public/images/orderSummary.jpg?raw=true)
 
 ## Razorpay
-![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/tree/main/frontend/public/images/Razorpay.jpg?raw=true)
+![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/blob/main/frontend/public/images/Razorpay.jpg?raw=true)
 
 ## User Profile
-![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/tree/main/frontend/public/images/userProfile.jpg?raw=true)
+![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/blob/main/frontend/public/images/userProfile.jpg?raw=true)
 
 ## Admin Dashboard
-![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/tree/main/frontend/public/images/admindashboard.jpg?raw=true)
+![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/blob/main/frontend/public/images/admindashboard.jpg?raw=true)
 
 ## Admin Product
-![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/tree/main/frontend/public/images/adminProduct.jpg?raw=true)
+![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/blob/main/frontend/public/images/adminProduct.jpg?raw=true)
 
 ## Product Update
-![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/tree/main/frontend/public/images/productUpdate.jpg?raw=true)
+![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/blob/main/frontend/public/images/productUpdate.jpg?raw=true)
 
 ## Admin Orders
-![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/tree/main/frontend/public/images/adminOrders.jpg?raw=true)
+![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/blob/main/frontend/public/images/adminOrders.jpg?raw=true)
 
 
 
