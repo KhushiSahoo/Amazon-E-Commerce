@@ -36,14 +36,8 @@ Full-Stack ecommerce site with product classification , Admin Dashboard , Razorp
 ## Shopping Cart
 ![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/blob/main/frontend/public/images/shoppingCart.jpg?raw=true)
 
-## Shopping Cart
-![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/blob/main/frontend/public/images/shoppingCart.jpg?raw=true)
-
 ## Order Detail
-![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/blob/main/frontend/public/images/orderDetail.jpg?raw=true)
-
-## Order Detail
-![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/blob/main/frontend/public/images/orderDetail.jpg?raw=true)
+![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/blob/main/frontend/public/images/OrderDetail.jpg?raw=true)
 
 ## Shippping Details
 ![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/blob/main/frontend/public/images/shipping.jpg?raw=true)
