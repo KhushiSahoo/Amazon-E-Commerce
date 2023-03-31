@@ -60,9 +60,9 @@ const ProfileScreen = () => {
     }
       
   return(
-    <Row>
+    <Row style={{minHeight:"70vh" , margin:"10px" , padding:"10px"}}>
         <Col md={3}>
-        <h3>User Profile</h3>
+        <h4>User Profile</h4>
     {message && <Message variant='danger'>{message}</Message>}
     {error && <Message variant='danger'>{error}</Message>}
     {success && <Message variant='success'>Profile Updated !</Message>}
@@ -108,7 +108,7 @@ const ProfileScreen = () => {
         ></Form.Control>
       </Form.Group>
 
-      <Button type='submit' variant='primary'>
+      <Button type='submit' variant='primary'style={{marginTop:"15px" }}>
         Update
       </Button>
     </Form>
@@ -156,7 +156,7 @@ const ProfileScreen = () => {
                       </td>
                       <td>
                     <LinkContainer to={`/order/${order._id}`}>
-                      <Button className='btn-sm' variant='light'>
+                      <Button className='btn-sm' variant='light' style={{marginTop:"15px"}}>
                         Details
                       </Button>
                     </LinkContainer>

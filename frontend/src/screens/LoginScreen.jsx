@@ -20,6 +20,8 @@ const LoginScreen = () => {
   const search = useLocation().search;
   console.log(search);
   const redirect = search ? search.split('=')[1] : '/';
+
+  console.log(userInfo)
   console.log(redirect);
   
 
@@ -27,7 +29,7 @@ const LoginScreen = () => {
     if (userInfo) {
       navigate(redirect)
     }
-  }, [ navigate , userInfo, redirect])
+  }, [ navigate , userInfo])
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -36,7 +38,7 @@ const LoginScreen = () => {
 
   return (
     <FormContainer>
-      <h1>Sign In</h1>
+      <h4 style={{marginTop:"20px"}}>Sign In</h4>
       {error && <Message variant='danger'>{error}</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
@@ -60,7 +62,7 @@ const LoginScreen = () => {
           ></Form.Control>
         </Form.Group>
 
-        <Button type='submit' variant='primary'>
+        <Button type='submit' variant='primary'style={{marginTop:"15px"}}>
           Sign In
         </Button>
       </Form>
@@ -68,7 +70,8 @@ const LoginScreen = () => {
       <Row className='py-3'>
         <Col>
           New Customer?{' '}
-          <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}>
+          {/*<Link to={redirect ? `/register?redirect=${redirect}` : '/register'}>*/}
+          <Link to='/register'>
             Register
           </Link>
         </Col>

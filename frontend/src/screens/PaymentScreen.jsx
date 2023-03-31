@@ -15,7 +15,7 @@ const PaymentScreen = () => {
   if(!shippingAddress){
       navigate('/shipping')
   }
-  const [paymentMethod, setPaymentMethod] = useState('PayPal');
+  const [paymentMethod, setPaymentMethod] = useState('Cash on Delivery');
   
 
   const submitHandler =(e) =>{
@@ -37,25 +37,25 @@ const PaymentScreen = () => {
           <Col>
           <Form.Check 
           type='radio'
-          label='Paypal or credit card'
-          id='PayPal'
+          label='Cash on Delivery'
+          id='COD'
           name='paymentMethod' 
-          value='PayPal' 
+          value='Cash on Delivery' 
           checked onChange={(e)=>setPaymentMethod(e.target.value)}>
        
           </Form.Check>
           <Form.Check 
           type='radio'
-          label='Stripe'
-          id='Stripe'
+          label='RazorPay'
+          id='RazorPay'
           name='paymentMethod' 
-          value='Stripe' 
+          value='RazorPay' 
            onChange={(e)=>setPaymentMethod(e.target.value)}>
        
           </Form.Check>
           </Col>
       </Form.Group>
-      <Button type='submit' variant='primary'>
+      <Button type='submit' variant='primary' style={{marginTop:"15px"}}>
         Continue
       </Button>
       </Form>

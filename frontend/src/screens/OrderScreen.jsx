@@ -2,10 +2,20 @@ import React, { useEffect , useState} from 'react'
 import {  Button , Row , Col , ListGroup , Image , Card, ListGroupItem} from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import {Link , useParams} from 'react-router-dom';
-import { getOrderDetails, payOrder } from '../actions/orderActions';
+//import { getOrderDetails, payOrder } from '../actions/orderActions';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import axios from 'axios';
+import {
+    getOrderDetails,
+    payOrder,
+    deliverOrder,
+} from '../actions/orderActions'
+import {
+    ORDER_PAY_RESET,
+    ORDER_DELIVER_RESET,
+} from '../constants/orderConstants'
+
 const OrderScreen = () => {
     const dispatch = useDispatch();
     const [sdkReady, setSdkReady] = useState(false)
@@ -15,7 +25,19 @@ const OrderScreen = () => {
     const {order , loading , error} = orderDetails
     const orderPay = useSelector((state) => state.orderPay)
     const { loading: loadingPay, success: successPay } = orderPay
-    
+    const orderDeliver = useSelector((state) => state.orderDeliver)
+    const { loading: loadingDeliver, success: successDeliver } = orderDeliver
+
+    const userLogin = useSelector((state) => state.userLogin)
+    const { userInfo } = userLogin
+
+    const deliverHandler = () => {
+        dispatch(deliverOrder(order))
+    }
+    useEffect(()=>{
+        console.log("order changed")
+    },[orderPay ,orderDeliver])
+
     if(!loading){
        //calculate prices
     const addDecimals = (num) =>{
@@ -69,7 +91,7 @@ const OrderScreen = () => {
         const { amount, id: order_id, currency } = result.data;
         const {
             data: { key: razorpayKey },
-          } = await axios.get(`http://localhost:5000/api/orders/get-razorpay-key`);
+          } = await axios.get(`/api/orders/get-razorpay-key`);
           console.log(razorpayKey);
           console.log(amount);
           console.log(currency);
@@ -230,6 +252,18 @@ const OrderScreen = () => {
                     </Button>
                 </ListGroup.Item>
               )}
+                          {loadingDeliver && <Loader />}
+                          {userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+                              <ListGroup.Item>
+                                  <Button
+                                      type='button'
+                                      className='btn btn-block'
+                                      onClick={deliverHandler}
+                                  >
+                                      Mark As Delivered
+                                  </Button>
+                              </ListGroup.Item>
+                          )}
                 </ListGroup>
             </Card>
         </Col>

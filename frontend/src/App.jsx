@@ -13,17 +13,24 @@ import ShippingScreen from "./screens/ShippingScreen";
 import PaymentScreen from "./screens/PaymentScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import OrderScreen from "./screens/OrderScreen";
+import UploadScreen from "./screens/UploadScreen";
+import UserListScreen from './screens/UserListScreen'
+import UserEditScreen from './screens/UserEditScreen'
+import ProductListScreen from './screens/ProductListScreen'
+import ProductEditScreen from './screens/ProductEditScreen'
+import OrderListScreen from './screens/OrderListScreen'
 function App() {
   return (
     <>
     <BrowserRouter>
     <Header />
-    <Container>
-    <Routes>
+    <Container style={{minHeight:"75vh" , marginTop:"15px"}}>
+      <Routes>
       
       <Route path="/product/:id" element={<ProductScreen/>}/> 
       <Route exact path="/cart" element={<CartScreen/>}/>
       <Route path="/cart/:id" element={<CartScreen/>}/> 
+      <Route path='/upload' element={<UploadScreen />} />
       <Route path='/login' element={<LoginScreen/>}/>
       <Route path='/register' element={<RegisterScreen/>}/>
       <Route path='/profile' element={<ProfileScreen/>}/>
@@ -31,11 +38,16 @@ function App() {
       <Route path='/payment' element={<PaymentScreen/>}/>
       <Route path='/placeorder' element={<PlaceOrderScreen/>}/>
       <Route path='/order/:id' element={<OrderScreen/>}/>
+      <Route path='/admin/userlist' element={<UserListScreen/>} />
+      <Route path='/admin/user/:id/edit' element={<UserEditScreen/>} />
+      <Route path='/admin/productlist' element={<ProductListScreen/>} />
+      <Route path='/admin/product/:id/edit' element={<ProductEditScreen/>}/>
       <Route path="/search/:keyword" element={<HomeScreen/>}/> 
+      <Route path='/admin/orderlist' element={<OrderListScreen/>} />
       <Route path="/" element={<HomeScreen/>}/>
       
       
-    </Routes>
+      </Routes>
     </Container>
     <Footer/>
     </BrowserRouter>

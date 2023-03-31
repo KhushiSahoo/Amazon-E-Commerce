@@ -25,13 +25,13 @@ const RegisterScreen = () => {
     console.log(search);
     const redirect = search ? search.split('=')[1] : '/';
     console.log(redirect);
-    
+    console.log(userInfo)
   
     useEffect(() => {
       if (userInfo) {
         navigate(redirect)
       }
-    }, [ navigate , userInfo, redirect])
+    }, [ navigate , userInfo])
   
     const submitHandler = (e) => {
       e.preventDefault();
@@ -45,8 +45,8 @@ const RegisterScreen = () => {
     }
       
   return(
-    <FormContainer>
-    <h1>Sign UP</h1>
+    <FormContainer style={{minHeight:"80vh"}}>
+    <h4 style={{marginTop:"20px"}}>Sign UP</h4>
     {message && <Message variant='danger'>{message}</Message>}
     {error && <Message variant='danger'>{error}</Message>}
     {loading && <Loader />}
@@ -91,7 +91,7 @@ const RegisterScreen = () => {
         ></Form.Control>
       </Form.Group>
 
-      <Button type='submit' variant='primary'>
+      <Button type='submit' variant='primary' style={{marginTop:"15px"}}>
         Register
       </Button>
     </Form>
@@ -99,7 +99,7 @@ const RegisterScreen = () => {
     <Row className='py-3'>
       <Col>
         Have an Account ?{' '}
-        <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>
+        <Link to='/login'>
           Login
         </Link>
       </Col>

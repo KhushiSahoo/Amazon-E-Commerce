@@ -40,7 +40,8 @@ const HomeScreen = () => {
       )}
         <main className="py-3">
         <Container>
-        <h4>Latest Product</h4>
+            {!keyword ? <h4>Latest Product</h4>:<h4>Results for {keyword}</h4>}
+        
         {loading ?
          <Loader/>
          : error? <Message variant="danger">{error}</Message>
@@ -63,7 +64,7 @@ const HomeScreen = () => {
             nextLinkClassName={"nextBttn"}
             disabledClassName={"paginationDisabled"}
             activeClassName={"paginationActive"}
-             activeClassName={'activeBttn'}
+          
              />
              </div>
            </center>
