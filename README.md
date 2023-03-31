@@ -22,10 +22,10 @@ Full-Stack ecommerce site with product classification , Admin Dashboard , Razorp
 
 
 ## Home Screen
-![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/tree/main/frontend/public/images/homeScreen.jpg?raw=true)
+![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/frontend/public/images/homeScreen.jpg?raw=true)
 
 ## Product Screen
-![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/tree/main/frontend/public/images/productScreen.jpg?raw=true)
+![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/frontend/public/images/productScreen.jpg?raw=true)
 
 ## Upload Page
 ![alt text](https://github.com/KhushiSahoo/Amazon-E-Commerce/tree/main/frontend/public/images/classification.jpg?raw=true)
